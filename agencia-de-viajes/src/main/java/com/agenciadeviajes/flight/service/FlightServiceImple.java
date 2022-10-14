@@ -1,8 +1,18 @@
 package com.agenciadeviajes.flight.service;
 
+import com.agenciadeviajes.flight.dto.FlightDTO;
 import com.agenciadeviajes.flight.dto.ListFlightDTO;
+import com.agenciadeviajes.flight.repository.FlightRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class FlightServiceImple implements FlightService{
+
+    public FlightServiceImple() {
+        FlightRepository flightRepository;
+    }
 
     @Override
     public void createFlight() {
@@ -20,6 +30,7 @@ public class FlightServiceImple implements FlightService{
 
     @Override
     public ListFlightDTO getAll() {
-        return null;
+        List<FlightDTO> flightDTOS;
+        return new ListFlightDTO();
     }
 }

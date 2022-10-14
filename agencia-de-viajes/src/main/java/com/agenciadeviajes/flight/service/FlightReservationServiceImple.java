@@ -1,8 +1,22 @@
 package com.agenciadeviajes.flight.service;
 
+import com.agenciadeviajes.flight.dto.FlightDTO;
+import com.agenciadeviajes.flight.dto.FlightReservationDTO;
 import com.agenciadeviajes.flight.dto.ListFlightReservationDTO;
+import com.agenciadeviajes.flight.repository.FlightRepository;
+import com.agenciadeviajes.flight.repository.FlightReservationRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class FlightReservationServiceImple implements FlightReservationService{
+
+    public FlightReservationServiceImple() {
+        FlightReservationRepository flightReservationRepository;
+        FlightRepository flightRepository;
+    }
+
     @Override
     public void createFlightReservation() {
 
@@ -20,6 +34,7 @@ public class FlightReservationServiceImple implements FlightReservationService{
 
     @Override
     public ListFlightReservationDTO getAllReservations() {
-        return null;
+        List<FlightReservationDTO> flightReservationDTOS;
+        return new ListFlightReservationDTO();
     }
 }
