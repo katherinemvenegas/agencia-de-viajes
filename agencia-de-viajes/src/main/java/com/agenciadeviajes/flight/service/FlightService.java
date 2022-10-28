@@ -1,6 +1,7 @@
 package com.agenciadeviajes.flight.service;
 
 import com.agenciadeviajes.flight.dto.FlightDTO;
+import com.agenciadeviajes.flight.dto.ListFlightDTO;
 
 
 public interface FlightService {

@@ -1,6 +1,7 @@
 package com.agenciadeviajes.flight.dto;
 
 
+import com.agenciadeviajes.flight.model.Flight;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
