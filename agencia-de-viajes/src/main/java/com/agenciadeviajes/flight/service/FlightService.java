@@ -1,9 +1,10 @@
 package com.agenciadeviajes.flight.service;
 
-import com.agenciadeviajes.flight.dto.ListFlightDTO;
+import com.agenciadeviajes.flight.dto.FlightDTO;
+
 
 public interface FlightService {
-    void createFlight();
+    void createFlight(FlightDTO flightDTO);
     void updateFlight();
     void deleteFlight();
     ListFlightDTO getAll();
