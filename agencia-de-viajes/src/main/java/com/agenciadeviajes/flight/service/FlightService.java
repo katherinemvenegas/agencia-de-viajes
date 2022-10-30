@@ -6,7 +6,7 @@ import com.agenciadeviajes.flight.dto.ListFlightDTO;
 
 public interface FlightService {
     void createFlight(FlightDTO flightDTO);
-    void updateFlight();
+    void updateFlight(String flightCode, FlightDTO flightDTO);
     void deleteFlight();
     ListFlightDTO getAll();
 }
