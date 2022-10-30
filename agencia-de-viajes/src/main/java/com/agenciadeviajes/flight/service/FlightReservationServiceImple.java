@@ -1,6 +1,5 @@
 package com.agenciadeviajes.flight.service;
 
-import com.agenciadeviajes.flight.dto.FlightDTO;
 import com.agenciadeviajes.flight.dto.FlightReservationDTO;
 import com.agenciadeviajes.flight.dto.ListFlightReservationDTO;
 import com.agenciadeviajes.flight.repository.FlightRepository;

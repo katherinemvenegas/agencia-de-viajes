@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FlightDTO {
+public class FlightCreateDTO {
 
     private String flightCode;
 

@@ -1,7 +1,6 @@
 package com.agenciadeviajes.flight.dto;
 
 
-import com.agenciadeviajes.flight.model.Flight;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +13,6 @@ import java.util.List;
 
 public class ListFlightDTO {
 
-    private List<FlightDTO> flightDTOList;
+    private List<FlightCreateDTO> flightCreateDTOList;
 
 }

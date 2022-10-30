@@ -1,6 +1,7 @@
 package com.agenciadeviajes.flight.controller;
 
-import com.agenciadeviajes.flight.dto.FlightDTO;
+import com.agenciadeviajes.flight.dto.FlightCreateDTO;
+import com.agenciadeviajes.flight.dto.FlightUpdateDTO;
 import com.agenciadeviajes.flight.dto.ListFlightDTO;
 import com.agenciadeviajes.flight.service.FlightServiceImple;
 import org.springframework.http.HttpStatus;
@@ -21,9 +22,9 @@ public class FlightController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<String> createFlight(@RequestBody FlightDTO flightDTO){
+    public ResponseEntity<String> createFlight(@RequestBody FlightCreateDTO flightCreateDTO){
 
-        flightServiceImple.createFlight(flightDTO);
+        flightServiceImple.createFlight(flightCreateDTO);
         return new ResponseEntity<>("El vuelvo fue dado de alta correctamente", HttpStatus.CREATED);
     }
 
@@ -31,4 +32,12 @@ public class FlightController {
     public ResponseEntity<ListFlightDTO> getFlights(){
         return new ResponseEntity<>(flightServiceImple.getAll(), HttpStatus.OK);
     }
+
+    @PutMapping("/edit")
+    public ResponseEntity<String> updateFlight(@RequestParam String flightCode, @RequestBody FlightUpdateDTO flightUpdateDTO){
+        flightServiceImple.updateFlight(flightCode, flightUpdateDTO);
+        return new ResponseEntity<>("El " + flightCode +" se modificó correctamente", HttpStatus.OK);
+    }
+
+
 }

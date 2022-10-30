@@ -1,6 +1,7 @@
 package com.agenciadeviajes.flight.service;
 
-import com.agenciadeviajes.flight.dto.FlightDTO;
+import com.agenciadeviajes.flight.dto.FlightCreateDTO;
+import com.agenciadeviajes.flight.dto.FlightUpdateDTO;
 import com.agenciadeviajes.flight.dto.ListFlightDTO;
 import com.agenciadeviajes.flight.model.Flight;
 import com.agenciadeviajes.flight.repository.FlightRepository;
@@ -24,12 +25,12 @@ public class FlightServiceImple implements FlightService{
     }
 
     @Override
-    public void createFlight(FlightDTO flightDTO) {
-        String flightCode = flightDTO.getFlightCode();
+    public void createFlight(FlightCreateDTO flightCreateDTO) {
+        String flightCode = flightCreateDTO.getFlightCode();
         Flight flight;
 
-        if(!this.flightExist(flightCode)){
-            flight = modelMapper.map(flightDTO, Flight.class);
+        if(!this.isFlightCodeExist(flightCode)){
+            flight = modelMapper.map(flightCreateDTO, Flight.class);
             flightRepository.save(flight);
         }
 
@@ -37,10 +38,14 @@ public class FlightServiceImple implements FlightService{
 
     }
     @Override
-    public void updateFlight(String flightCode, FlightDTO flightDTO) {
-
-
-
+    public void updateFlight(String flightCode, FlightUpdateDTO flightUpdateDTO) {
+        Flight flight = flightRepository.findByFlightCode(flightCode);
+        if(!this.isFlightAlreadyExist(flightCode)){
+            Flight flightUpdate = modelMapper.map(flightUpdateDTO, Flight.class);
+            flightUpdate.setId(flight.getId());
+            flightUpdate.setFlightCode(flight.getFlightCode());
+            flightRepository.save(flightUpdate);
+        }
     }
 
     @Override
@@ -51,19 +56,27 @@ public class FlightServiceImple implements FlightService{
     @Override
     public ListFlightDTO getAll() {
 
-        List<FlightDTO> flightDTOList = flightRepository.findAll()
-                .stream().map(flight -> modelMapper.map(flight, FlightDTO.class))
+        List<FlightCreateDTO> flightCreateDTOList = flightRepository.findAll()
+                .stream().map(flight -> modelMapper.map(flight, FlightCreateDTO.class))
                 .collect(Collectors.toList());
 
-        return new ListFlightDTO(flightDTOList);
+        return new ListFlightDTO(flightCreateDTOList);
     }
 
-    private boolean flightExist(String flightCode){
+    private boolean isFlightCodeExist(String flightCode){
              if(flightRepository.existsByFlightCode(flightCode)){
                  throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ya existe un vuelo con el codigo ingresado");
              }else {
                  return false;
              }
         }
+
+    private boolean isFlightAlreadyExist(String flightCode){
+        if(!flightRepository.existsByFlightCode(flightCode)){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No encontramos un vuelo con el codigo ingresado");
+        }else {
+            return false;
+        }
+    }
     }
 

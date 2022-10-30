@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface FlightRepository extends JpaRepository<Flight, Long> {
 
     boolean existsByFlightCode(String flightCode);
+
+    Flight findByFlightCode(String flightCode);
 }
